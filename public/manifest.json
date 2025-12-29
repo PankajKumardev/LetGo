@@ -1,0 +1,22 @@
+{
+    "name": "LetGo",
+    "short_name": "LetGo",
+    "description": "A mindful digital ritual for emotional release",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#030303",
+    "theme_color": "#030303",
+    "orientation": "portrait",
+    "icons": [
+        {
+            "src": "/favicon.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/favicon.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

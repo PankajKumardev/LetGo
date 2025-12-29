@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+/* Custom theme configuration for Tailwind v4 */
+@theme {
+  --font-serif: "Instrument Serif", serif;
+  --font-hand: "Caveat", cursive;
+  --font-sans: "Inter Tight", sans-serif;
+  
+  --color-void: #030303;
+  --color-flame: #FF5500;
+  --color-dawn: #3b0764;
+  --color-text: #E2E8F0;
+  
+  --animate-breathe: breathe 8s ease-in-out 3;
+  --animate-rise: rise 2s ease-out forwards;
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.5); opacity: 1; }
+}
+
+@keyframes rise {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #030303;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom Scrollbar for the note */
+textarea::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
