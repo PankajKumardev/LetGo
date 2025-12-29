@@ -4,7 +4,7 @@
 
 **Release what no longer serves you.**
 
-A mindful digital ritual for emotional release — write it down, burn it away, breathe through it, and embrace a new dawn.
+A mindful digital ritual for emotional release - write it down, burn it away, breathe through it, and embrace 2026.
 
 [![Made with React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react)](https://react.dev)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-38B2AC?style=flat-square&logo=tailwindcss)](https://tailwindcss.com)
@@ -22,8 +22,21 @@ LetGo is an immersive web experience that guides you through a symbolic ritual o
 
 1. **📝 Write** — Express what you want to release on the ritual paper
 2. **🔥 Burn** — Drag the paper to the flames and watch it ignite with realistic fire particles
-3. **🌬️ Breathe** — Follow the guided breathing exercise to center yourself
-4. **🌅 Reveal** — Experience a beautiful sunrise as a symbol of new beginnings
+3. **🌬️ Breathe** — Follow the guided breathing exercise (or skip it)
+4. **🌅 Reveal** — Experience a beautiful sunrise welcoming 2026
+
+---
+
+## ✅ Features
+
+- 🔥 **Realistic fire particles** with smoke effects
+- 📜 **Paper crinkle & tear effects** as you drag toward fire
+- 📳 **Haptic feedback** on mobile when paper burns
+- ⌨️ **Keyboard shortcuts** — Ctrl+Enter to burn, Escape to restart
+- ⏭️ **Skip button** for breathing exercise
+- 🔒 **Privacy notice** — nothing is saved or sent
+- 📱 **Fully responsive** — works on all devices
+- 📲 **PWA ready** — installable on mobile
 
 ---
 
@@ -32,15 +45,10 @@ LetGo is an immersive web experience that guides you through a symbolic ritual o
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/) (v18 or higher)
-- npm or yarn
 
 ### Installation
 
 ```bash
-# Clone the repository
-git clone https://github.com/yourusername/letgo.git
-cd letgo
-
 # Install dependencies
 npm install
 
@@ -68,7 +76,7 @@ npm run preview
 | **Vite** | Build Tool & Dev Server |
 | **Tailwind CSS 4** | Styling |
 | **Framer Motion** | Animations |
-| **Canvas API** | Fire Particle System |
+| **Canvas API** | Fire & Smoke Particle System |
 
 ---
 
@@ -78,55 +86,22 @@ npm run preview
 letgo/
 ├── components/
 │   ├── BreathingGuide.tsx    # Guided breathing animation
-│   ├── FireSystem.tsx        # Canvas-based fire particles
+│   ├── FireSystem.tsx        # Canvas-based fire & smoke particles
 │   ├── FogBackground.tsx     # Atmospheric fog effect
-│   ├── RitualPaper.tsx       # Draggable paper component
+│   ├── RitualPaper.tsx       # Draggable paper with effects
 │   └── SunriseReveal.tsx     # Final sunrise animation
-├── App.tsx                    # Main app with stage management
-├── index.tsx                  # Entry point
-├── index.css                  # Tailwind & custom styles
-├── types.ts                   # TypeScript types
-└── vite.config.ts            # Vite configuration
+├── public/
+│   ├── favicon.png           # App icon
+│   └── manifest.json         # PWA manifest
+├── App.tsx                   # Main app with stage management
+├── index.tsx                 # Entry point
+├── index.css                 # Tailwind & custom styles
+└── types.ts                  # TypeScript types
 ```
 
 ---
 
-## 🎨 Customization
-
-### Theme Colors
-
-Edit the theme in `index.css`:
-
-```css
-@theme {
-  --color-void: #030303;    /* Background */
-  --color-flame: #FF5500;   /* Fire accent */
-  --color-dawn: #3b0764;    /* Purple accent */
-  --color-text: #E2E8F0;    /* Text color */
-}
-```
-
-### Fonts
-
-The app uses:
-- **Instrument Serif** — Elegant headers
-- **Caveat** — Handwritten paper text
-- **Inter Tight** — UI elements
-
----
-
-## 💡 Suggestions for Enhancement
-
-- [ ] **🔊 Sound Effects** — Add ambient fire crackling, paper burning, and calming music
-- [ ] **💾 History** — Save past releases (anonymously) for reflection
-- [ ] **🌙 Dark/Light Themes** — Alternative color schemes
-- [ ] **📱 PWA Support** — Install as mobile app
-- [ ] **🔗 Share** — Generate shareable affirmation cards after the ritual
-- [ ] **🌍 Localization** — Multi-language support
-
----
-
-## 📄 License
+##  License
 
 MIT License — feel free to use, modify, and share.
 
@@ -134,6 +109,7 @@ MIT License — feel free to use, modify, and share.
 
 <div align="center">
 
-Made with 🔥 for those ready to **let go**
+Made with 🔥 for those ready to **let go** and welcome **2026**
 
 </div>
+
