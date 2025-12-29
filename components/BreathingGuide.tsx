@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
 
 interface BreathingGuideProps {
@@ -7,55 +7,54 @@ interface BreathingGuideProps {
 
 export const BreathingGuide: React.FC<BreathingGuideProps> = ({ onComplete }) => {
   const [text, setText] = useState('Just breathe.');
-  const cycleCount = 1;
-  const cycleDuration = 8000; // 4s in, 4s out
+  const timersRef = useRef<NodeJS.Timeout[]>([]);
+  const completedRef = useRef(false);
+  
+  const handleComplete = useCallback(() => {
+    if (completedRef.current) return;
+    completedRef.current = true;
+    // Clear all pending timers
+    timersRef.current.forEach(timer => clearTimeout(timer));
+    timersRef.current = [];
+    onComplete();
+  }, [onComplete]);
 
   useEffect(() => {
-    let cycle = 0;
+    const cycleDuration = 8000;
     
-    const runCycle = () => {
-      if (cycle >= cycleCount) {
-        setTimeout(onComplete, 1000);
-        return;
-      }
-
-      // Inhale
+    // Timer 1: Start inhale
+    const t1 = setTimeout(() => {
       setText('Inhale...');
-      
-      // Exhale
-      setTimeout(() => {
-        setText('Exhale...');
-      }, cycleDuration / 2);
+    }, 1000);
+    
+    // Timer 2: Exhale
+    const t2 = setTimeout(() => {
+      setText('Exhale...');
+    }, 1000 + cycleDuration / 2);
+    
+    // Timer 3: Auto complete
+    const t3 = setTimeout(() => {
+      handleComplete();
+    }, 1000 + cycleDuration);
+    
+    timersRef.current = [t1, t2, t3];
 
-      cycle++;
-      if (cycle < cycleCount) {
-        setTimeout(runCycle, cycleDuration);
-      } else {
-        // End of last cycle
-        setTimeout(onComplete, cycleDuration);
-      }
+    return () => {
+      timersRef.current.forEach(timer => clearTimeout(timer));
     };
-
-    // Initial delay before starting pattern
-    const startTimer = setTimeout(() => {
-        runCycle();
-    }, 2000);
-
-    return () => clearTimeout(startTimer);
-  }, [onComplete]);
+  }, [handleComplete]);
 
   return (
     <div className="absolute inset-0 flex flex-col items-center justify-center z-30">
       <motion.div
         animate={{
-          scale: [1, 1.8, 1], // Neutral -> Inhale (Big) -> Exhale (Small)
+          scale: [1, 1.8, 1],
           opacity: [0.3, 0.8, 0.3],
         }}
         transition={{
           duration: 8,
           ease: "easeInOut",
           repeat: 0, 
-          repeatDelay: 0
         }}
         className="w-48 h-48 rounded-full border-2 border-orange-100/30 bg-orange-500/5 blur-xl absolute"
       />
@@ -81,19 +80,19 @@ export const BreathingGuide: React.FC<BreathingGuideProps> = ({ onComplete }) =>
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -10 }}
-        transition={{ duration: 1 }}
+        transition={{ duration: 0.5 }}
         className="mt-16 font-serif italic text-3xl text-orange-50/80 tracking-widest"
       >
         {text}
       </motion.h2>
       
-      {/* Skip Button */}
+      {/* Skip Button - visible immediately */}
       <motion.button
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 3, duration: 1 }}
-        onClick={onComplete}
-        className="mt-12 text-white/30 hover:text-white/60 transition-colors duration-300 font-sans text-sm tracking-widest uppercase"
+        transition={{ delay: 0.5, duration: 0.5 }}
+        onClick={handleComplete}
+        className="mt-12 text-white/40 hover:text-white/70 transition-colors duration-300 font-sans text-sm tracking-widest uppercase"
       >
         Skip →
       </motion.button>
